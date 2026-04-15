@@ -125,10 +125,10 @@ export default function Projects() {
             return (
               <motion.article
                 key={p.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.25 }}
                 className={`glow-card p-6 flex flex-col ${
                   p.featured ? "lg:col-span-1 ring-1 ring-brand-500/20" : ""
                 }`}
