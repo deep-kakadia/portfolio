@@ -25,7 +25,7 @@ export default function BackToTop() {
           transition={{ duration: 0.25 }}
           onClick={scrollTop}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-to-br from-brand-500 to-blue-500 text-white shadow-md shadow-brand-500/25 hover:shadow-brand-500/40 hover:scale-105 transition-all flex items-center justify-center"
+          className="fixed bottom-5 right-5 z-50 w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-blue-500 text-white shadow-md shadow-brand-500/25 hover:shadow-brand-500/40 hover:scale-105 transition-all flex items-center justify-center"
         >
           <ArrowUp size={18} />
         </motion.button>
