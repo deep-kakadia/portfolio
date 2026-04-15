@@ -1,5 +1,8 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
+
+const GA_ID = "G-N6DDES8JW4";
 
 export const metadata = {
   title: "Deep Kakadiya — Data Analyst & Python Developer",
@@ -35,6 +38,18 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <Analytics />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </body>
     </html>
   );
