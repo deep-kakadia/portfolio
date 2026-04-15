@@ -76,10 +76,10 @@ export default function Skills() {
             return (
               <motion.div
                 key={g.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="glow-card p-6"
               >
                 <div className="flex items-center gap-3 mb-5">
