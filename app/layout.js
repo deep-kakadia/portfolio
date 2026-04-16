@@ -9,6 +9,9 @@ export const metadata = {
   description:
     "Portfolio of Deep Kakadiya — Data Analyst skilled in Power BI, Python, and building data-driven solutions.",
   keywords: ["Deep Kakadiya", "Data Analyst", "Power BI", "Python", "Portfolio"],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Deep Kakadiya — Data Analyst",
     description: "Turning 10M+ records into business decisions.",
