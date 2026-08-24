@@ -1,11 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import { Sparkles, Shield, Gem, ScanFace, Dumbbell, Smartphone } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
 const projects = [
   {
     icon: Sparkles,
-    title: "Clickora — AI Photo Gallery SaaS",
+    title: "MyChitram: AI Photo Gallery SaaS",
     desc: "Multi-tenant SaaS where event guests find themselves in photos with a single selfie. Face embeddings + vector similarity for sub-second matching.",
     highlights: [
       "4-tier subscription model with feature gating",
@@ -18,7 +19,7 @@ const projects = [
   },
   {
     icon: Shield,
-    title: "Crime Branch Surat — Power BI Dashboard",
+    title: "Crime Branch Surat: Power BI Dashboard",
     desc: "Analyzed 4M+ crime records for DCP Office Surat, identifying patterns across location, time, and crime type. Officially certified by the Deputy Commissioner.",
     highlights: [
       "4M+ records analyzed",
@@ -31,7 +32,7 @@ const projects = [
   {
     icon: Gem,
     title: "Sarin Technology Advisor Automation",
-    desc: "Python automation controlling the Sarin Advisor software — automates diamond imports, inclusion analysis, and cutting-parameter configuration.",
+    desc: "Python automation controlling the Sarin Advisor software, automating diamond imports, inclusion analysis, and cutting-parameter configuration.",
     highlights: [
       "Micron-level precision handling",
       "Template-driven scenario analysis",
@@ -53,7 +54,7 @@ const projects = [
   {
     icon: Gem,
     title: "DiamCalc Automation System",
-    desc: "End-to-end automation for DiamCalc — generates 3D models, 4P files, and PDF reports for diamond analysis at scale.",
+    desc: "End-to-end automation for DiamCalc that generates 3D models, 4P files, and PDF reports for diamond analysis at scale.",
     highlights: [
       "Automated 3D model & report generation",
       "Scalable template-driven pipeline",
@@ -75,7 +76,7 @@ const projects = [
   {
     icon: Dumbbell,
     title: "Zascon Master & VFitClub",
-    desc: "Fitness & wellness websites — one offering online courses (nutrition, exercise), the other a gym platform with memberships and trainers.",
+    desc: "Fitness & wellness websites: one offering online courses (nutrition, exercise), the other a gym platform with memberships and trainers.",
     highlights: [
       "Course content design & SEO",
       "Membership & trainer profiles",
@@ -98,76 +99,51 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section
-      id="projects"
-      className="section-padding bg-slate-50 dark:bg-slate-900/50"
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            A selection of work spanning data analytics, AI, automation, and full-stack
-            applications.
-          </p>
-        </motion.div>
+    <section id="projects" className="section-padding">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          kicker="Projects"
+          title="Selected work"
+          subtitle="A selection spanning data analytics, AI, automation, and full-stack applications."
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => {
             const Icon = p.icon;
             return (
               <motion.article
                 key={p.title}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.25 }}
-                className={`glow-card p-6 flex flex-col ${
-                  p.featured ? "lg:col-span-1 ring-1 ring-brand-500/20" : ""
-                }`}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.4, delay: (i % 3) * 0.05 }}
+                className="card card-hover flex flex-col p-6"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-brand-500 to-blue-500 text-white">
-                    <Icon size={22} />
-                  </div>
+                <div className="mb-4 flex items-start justify-between">
+                  <Icon size={22} className="text-accent" />
                   {p.featured && (
-                    <span className="text-[10px] uppercase tracking-wider font-bold text-brand-500 bg-brand-500/10 px-2 py-1 rounded-full">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-accent">
                       Featured
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                  {p.desc}
-                </p>
+                <h3 className="mb-2 font-display text-base font-semibold">{p.title}</h3>
+                <p className="mb-4 text-sm leading-relaxed text-muted">{p.desc}</p>
 
-                <ul className="space-y-1.5 mb-5 flex-1">
+                <ul className="mb-5 flex-1 space-y-1.5">
                   {p.highlights.map((h) => (
-                    <li
-                      key={h}
-                      className="text-xs text-slate-700 dark:text-slate-300 flex gap-2"
-                    >
-                      <span className="text-brand-500">✓</span>
+                    <li key={h} className="flex gap-2 text-xs text-muted">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
                       <span>{h}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <div className="flex flex-wrap gap-1.5 border-t border-default pt-4">
                   {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
-                    >
-                      {t}
+                    <span key={t} className="text-[11px] text-muted">
+                      #{t}
                     </span>
                   ))}
                 </div>

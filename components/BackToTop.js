@@ -12,20 +12,19 @@ export default function BackToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollTop = () =>
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <AnimatePresence>
       {show && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.6, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: 20 }}
-          transition={{ duration: 0.25 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
           onClick={scrollTop}
           aria-label="Back to top"
-          className="fixed bottom-5 right-5 z-50 w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-blue-500 text-white shadow-md shadow-brand-500/25 hover:shadow-brand-500/40 hover:scale-105 transition-all flex items-center justify-center"
+          className="fixed bottom-5 right-5 z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-default bg-surface text-muted transition-colors hover:text-accent"
         >
           <ArrowUp size={18} />
         </motion.button>

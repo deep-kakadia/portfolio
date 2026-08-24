@@ -1,52 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+/* ------------------------------------------------------------------ */
+/*  Theme tokens: one warm-charcoal dark theme + a light counterpart.  */
+/*  Colors are stored as "R G B" so we can add opacity with rgb(...).  */
+/* ------------------------------------------------------------------ */
+:root {
+  --bg: 250 249 247; /* warm off-white */
+  --surface: 255 255 255;
+  --surface-2: 245 244 242;
+  --border: 231 229 226;
+  --text: 28 25 23; /* ink */
+  --text-muted: 120 113 108;
+  --accent: 189 122 6; /* amber-600, enough contrast on light */
+  --accent-soft: 189 122 6;
+  --on-accent: 255 255 255;
+}
+
+html.dark {
+  --bg: 12 11 10; /* warm charcoal */
+  --surface: 23 21 19;
+  --surface-2: 30 27 25;
+  --border: 42 38 35;
+  --text: 245 244 242;
+  --text-muted: 163 158 152;
+  --accent: 246 181 36; /* bright amber for dark */
+  --accent-soft: 246 181 36;
+  --on-accent: 24 18 8;
+}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased;
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+  -webkit-font-smoothing: antialiased;
+  @apply font-sans;
 }
 
 ::selection {
-  @apply bg-brand-500/30;
+  background-color: rgb(var(--accent) / 0.25);
 }
 
-/* Subtle scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 10px;
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(148 163 184) transparent;
+  scrollbar-color: rgb(var(--border)) transparent;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+  background-color: rgb(var(--border));
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-brand-500;
+  background-color: rgb(var(--text-muted) / 0.5);
+  background-clip: content-box;
 }
 
-.gradient-text {
-  @apply bg-gradient-to-r from-brand-500 via-blue-500 to-cyan-400 bg-clip-text text-transparent;
-  background-size: 200% 200%;
-  animation: gradient 6s ease infinite;
+/* ------------------------------------------------------------------ */
+/*  Semantic helpers used across every component for consistency.      */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .text-accent {
+    color: rgb(var(--accent));
+  }
+  .bg-accent {
+    background-color: rgb(var(--accent));
+  }
+  .text-muted {
+    color: rgb(var(--text-muted));
+  }
+  .bg-surface {
+    background-color: rgb(var(--surface));
+  }
+  .bg-surface-2 {
+    background-color: rgb(var(--surface-2));
+  }
+  .border-default {
+    border-color: rgb(var(--border));
+  }
+  .bg-nav {
+    background-color: rgb(var(--bg) / 0.8);
+  }
+
+  .section-padding {
+    @apply px-6 md:px-10 lg:px-16 py-24 md:py-32;
+  }
+
+  /* Flat card: hairline border, no colored glow. Subtle lift on hover. */
+  .card {
+    background-color: rgb(var(--surface));
+    border: 1px solid rgb(var(--border));
+    @apply rounded-xl transition-colors duration-200;
+  }
+  .card-hover:hover {
+    border-color: rgb(var(--accent) / 0.5);
+  }
+
+  /* Small tracked label that sits above section headings. */
+  .kicker {
+    @apply inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.2em];
+    color: rgb(var(--text-muted));
+  }
+  .kicker::before {
+    content: "";
+    @apply inline-block h-px w-8;
+    background-color: rgb(var(--accent));
+  }
+
+  /* Primary + ghost buttons. */
+  .btn-primary {
+    background-color: rgb(var(--accent));
+    color: rgb(var(--on-accent));
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-opacity duration-200;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  .btn-ghost {
+    border: 1px solid rgb(var(--border));
+    color: rgb(var(--text));
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-colors duration-200;
+  }
+  .btn-ghost:hover {
+    border-color: rgb(var(--accent) / 0.6);
+    color: rgb(var(--accent));
+  }
+
+  /* Small tag / chip. */
+  .chip {
+    background-color: rgb(var(--surface-2));
+    border: 1px solid rgb(var(--border));
+    color: rgb(var(--text-muted));
+    @apply rounded-md px-2.5 py-1 text-xs font-medium transition-colors duration-200;
+  }
 }
 
-.glow-card {
-  @apply relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-300;
-}
-.glow-card:hover {
-  @apply border-brand-400 dark:border-brand-500 shadow-[0_0_30px_-5px_rgba(99,102,241,0.4)] -translate-y-1;
-}
-
-.section-padding {
-  @apply px-6 md:px-12 lg:px-24 py-20 md:py-28;
+/* Faint dot grid used behind the hero: reads "designed", not noisy. */
+.dot-grid {
+  background-image: radial-gradient(
+    rgb(var(--text) / 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
 }

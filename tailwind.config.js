@@ -8,41 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Single warm amber/gold accent, used sparingly.
         brand: {
-          50: "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
+          50: "#fff8eb",
+          100: "#feefc7",
+          200: "#fddf8a",
+          300: "#fbc94d",
+          400: "#f6b524",
+          500: "#e09b0f",
+          600: "#bd7a06",
+          700: "#96590a",
+          800: "#7b470f",
+          900: "#683c10",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-      },
-      animation: {
-        "gradient": "gradient 8s ease infinite",
-        "float": "float 6s ease-in-out infinite",
-        "blob": "blob 10s infinite",
-      },
-      keyframes: {
-        gradient: {
-          "0%, 100%": { "background-position": "0% 50%" },
-          "50%": { "background-position": "100% 50%" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        blob: {
-          "0%, 100%": { transform: "translate(0,0) scale(1)" },
-          "33%": { transform: "translate(30px,-50px) scale(1.1)" },
-          "66%": { transform: "translate(-20px,20px) scale(0.9)" },
-        },
+        // One clean, neutral sans-serif across the whole site (Claude-style look).
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
       },
     },
   },
